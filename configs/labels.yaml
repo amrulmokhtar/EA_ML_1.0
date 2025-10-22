@@ -1,0 +1,10 @@
+method: triple_barrier
+params:
+  horizon_bars: 20
+  atr_window: 48
+  tp_k_atr: 0.5
+  sl_k_atr: 0.35
+notes:
+- Barriers scale with ATR to stay volatility aware
+- Labels are 1 for upper barrier first, -1 for lower barrier first, 0 for tie or flat
+- commission_roundtrip_usd kept in dataset for later cost modeling

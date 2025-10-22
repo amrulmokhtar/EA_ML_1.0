@@ -1,0 +1,22 @@
+dataset: XAUUSD M5 ICMarkets
+paths:
+  raw_csv: data/raw/historical_5m.csv
+  canonical_parquet: data/canonical/xauusd_m5_cleaned.parquet
+timestamp_col: timestamp
+columns:
+  open: float
+  high: float
+  low: float
+  close: float
+  tick_vol: int
+  spread_points: float
+  commission_roundtrip_usd: float
+  ret1: log return close[t] - close[t-1]
+  ret1_winsor: Winsorized ret1, p_low=0.001, p_high=0.999
+  ret1_hampel: Hampel filtered, win=25, k=3.0
+  ret1_robust_z: MAD scaled ret1_hampel
+  mid_smooth: Robust EMA of mid price, alpha=0.1
+  spread_smooth: Robust EMA of spread_points, alpha=0.1
+notes:
+- Keep commission_roundtrip_usd for cost modeling in backtests and EV.
+- Gaps during weekends are not filled, which matches actual market activity.
