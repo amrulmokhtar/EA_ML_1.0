@@ -1,0 +1,10 @@
+# Ignore large and temporary data
+data/raw/
+data/canonical/*.parquet
+artifacts/*.pkl
+*.pkl
+*.parquet
+__pycache__/
+.venv/
+reports/*.csv
+reports/*.png
