@@ -1,0 +1,5 @@
+# configs/model_ops.yaml
+logistic_calibrated:
+  threshold_long: 0.58
+  threshold_short: 0.58
+  notes: "Use with rule filters, spread cap, volume floor, EMA slope."
