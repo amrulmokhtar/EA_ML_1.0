@@ -1,0 +1,49 @@
+symbol: "XAUUSD"
+timeframe: "M5"
+
+# sequence settings
+lookback_bars: 96
+horizon_bars: 20
+neutral_label: 0
+
+# data paths
+data:
+  features_path: "data/xauusd_m5_cleaned.parquet"
+  labels_path:   "data/xauusd_m5_labeled.parquet"
+
+# time splits
+split:
+  train_end: "2022-12-31"
+  val_end:   "2023-06-30"
+  test_end:  "2024-12-31"
+
+# model
+model:
+  in_channels: 64        # will be auto detected, this is informational
+  layers: 5
+  hidden_channels: 64
+  kernel_size: 5
+  dropout: 0.1
+  weight_decay: 0.0001
+  use_group_norm: true
+
+# training
+train:
+  batch_size: 256
+  max_epochs: 50
+  optimizer: "adamw"
+  lr: 0.001
+  early_stop_patience: 7
+  class_weighting: "auto"
+  focal_gamma: 2.0
+
+# thresholds for gating
+thresholds:
+  grid: [0.50, 0.52, 0.55, 0.58, 0.60, 0.62, 0.65]
+
+# artifacts
+artifacts:
+  model_path: "artifacts/tcn_model.pt"
+  calibrator_path: "artifacts/tcn_calibrator.pkl"
+  report_dir: "reports"
+  figs_dir: "reports/figures"
